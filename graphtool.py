@@ -8,7 +8,8 @@ profitPoints = []
 cumulativeProfit = []
 totalProfit = 0.0
 
-for line in open("Trade_History.csv"):
+csvFile = open("Trade_History.csv")
+for line in csvFile:
     try:
         strippedLine = line.split(',')
         datePoints.append(dt.datetime.strptime(strippedLine[0].split()[0],'%m/%d/%Y').date())
@@ -19,7 +20,7 @@ for line in open("Trade_History.csv"):
             profitPoints.append(float(profit[1:]))
     except:
         pass
-
+csvFile.close()
 datePoints.reverse()
 profitPoints.reverse()
 for item in profitPoints:
