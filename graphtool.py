@@ -3,13 +3,22 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.ticker as ticker
+import sys
 
+if(len(sys.argv) != 2):
+    print("Incorrect argument. Please use the following format:")
+    print("python graphtool.py (Insert Trade History File Here, no parenthesis)")
+    sys.exit(1)
+try:
+    csvFile = open(sys.argv[1])
+except:
+    print(sys.argv[1] + " not found. Please ensure the file exists.")
+    sys.exit(1)
 datePoints = []
 profitPoints = []
 fees = []
 totalProfit = 0.0
 totalFees = 0.0
-csvFile = open("Trade_History.csv")
 for line in csvFile:
     try:
         strippedLine = line.split(',')
